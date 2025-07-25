@@ -1,16 +1,69 @@
-# Wii.JS
-A work-in-progress Wii Menu for the browser. 
+# React + TypeScript + Vite
 
-# Planned Improvements
-* Better splash screens with video functionality
-* Settings page that allows for channels to be linked to web pages, saved using LocalStorage
-* Music/SFX settings
-* Themes
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-# Known Issues
-* Music doesn't start automatically in Chrome because of autoplaying restrictions. Only starts after clicking and exiting a channel.
-* Responsiveness and scaling isn't perfect, causing layout issues on some viewport sizes. This will be improved over time.
-* Does not work in low-res viewports or smartphones. I'm targeting desktops, so fixing this is low priority for the moment.
-* CSS clip doesn't have the greatest browser compatiblity, causing the corners of channel images to bleed outside of the outlines. Observed in Microsoft Edge. I'm exploring alternative options. 
-* Oddities with the cursor's shadow transparency have been observed on Chrome OS. 
-Github issues are welcome for anything not listed here.
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+
+```js
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+
+      // Remove tseslint.configs.recommended and replace with this
+      ...tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      ...tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      ...tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
+
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
