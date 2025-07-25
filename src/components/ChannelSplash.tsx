@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useAudio } from '../hooks/useAudio';
+import { SplashData } from '../types';
 
-const ChannelSplash = ({ splashData, onBackToMenu }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const { playBack, playSelect } = useAudio();
+interface ChannelSplashProps {
+  splashData: SplashData | null;
+  onBackToMenu: () => void;
+}
+
+const ChannelSplash: React.FC<ChannelSplashProps> = ({ splashData, onBackToMenu }) => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const { playBack, playSelect, playHover } = useAudio();
 
   useEffect(() => {
     // Trigger splash animation
     setTimeout(() => setIsVisible(true), 100);
   }, []);
 
-  const handleMenuClick = () => {
+  const handleMenuClick = (): void => {
     playBack();
     setIsVisible(false);
     setTimeout(() => {
@@ -18,12 +24,12 @@ const ChannelSplash = ({ splashData, onBackToMenu }) => {
     }, 500);
   };
 
-  const handleStartClick = () => {
+  const handleStartClick = (): void => {
     playSelect();
     // In a real implementation, this would launch the channel
   };
 
-  const splashStyle = splashData?.transformOrigin ? {
+  const splashStyle: React.CSSProperties = splashData?.transformOrigin ? {
     transformOrigin: splashData.transformOrigin,
     backgroundImage: splashData.image ? `url(${splashData.image})` : 'none'
   } : {};
@@ -39,14 +45,14 @@ const ChannelSplash = ({ splashData, onBackToMenu }) => {
         <div className="splash-buttons">
           <button 
             className="btn menu-btn"
-            onMouseOver={() => useAudio().playHover()}
+            onMouseOver={playHover}
             onClick={handleMenuClick}
           >
             Wii Menu
           </button>
           <button 
             className="btn"
-            onMouseOver={() => useAudio().playHover()}
+            onMouseOver={playHover}
             onClick={handleStartClick}
           >
             Start

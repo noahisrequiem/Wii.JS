@@ -1,17 +1,23 @@
 import React from 'react';
 import { useAudio } from '../hooks/useAudio';
+import { Channel, SplashData } from '../types';
 
-const ChannelIcon = ({ channel, onChannelClick }) => {
+interface ChannelIconProps {
+  channel: Channel;
+  onChannelClick: (channelData: SplashData, event: React.MouseEvent<HTMLDivElement>) => void;
+}
+
+const ChannelIcon: React.FC<ChannelIconProps> = ({ channel, onChannelClick }) => {
   const { playHover, playZip } = useAudio();
 
-  const handleClick = (event) => {
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>): void => {
     if (channel.occupied) {
       playZip();
       onChannelClick(channel, event);
     }
   };
 
-  const handleMouseOver = () => {
+  const handleMouseOver = (): void => {
     if (channel.occupied) {
       playHover();
     }

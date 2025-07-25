@@ -1,6 +1,11 @@
 import React from 'react';
 
-const ScreenMessage = ({ show, onClose }) => {
+interface ScreenMessageProps {
+  show: boolean;
+  onClose: () => void;
+}
+
+const ScreenMessage: React.FC<ScreenMessageProps> = ({ show, onClose }) => {
   if (!show) return null;
 
   return (

@@ -1,15 +1,21 @@
 import React from 'react';
 import { useAudio } from '../hooks/useAudio';
+import { ViewType, TransitionType } from '../types';
 
-const BottomSection = ({ currentDate, onViewChange }) => {
+interface BottomSectionProps {
+  currentDate: string;
+  onViewChange: (view: ViewType, transition?: TransitionType) => void;
+}
+
+const BottomSection: React.FC<BottomSectionProps> = ({ currentDate, onViewChange }) => {
   const { playHover } = useAudio();
 
-  const handleSettingsClick = () => {
+  const handleSettingsClick = (): void => {
     playHover();
     onViewChange('settings-main', 'fade');
   };
 
-  const handleMailClick = () => {
+  const handleMailClick = (): void => {
     playHover();
   };
 

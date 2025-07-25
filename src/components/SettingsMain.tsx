@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useAudio } from '../hooks/useAudio';
+import { ViewType, TransitionType } from '../types';
 import '../styles/settings.css';
 
-const SettingsMain = ({ onViewChange }) => {
-  const [isAnimated, setIsAnimated] = useState(false);
+interface SettingsMainProps {
+  onViewChange: (view: ViewType, transition?: TransitionType) => void;
+}
+
+const SettingsMain: React.FC<SettingsMainProps> = ({ onViewChange }) => {
+  const [isAnimated, setIsAnimated] = useState<boolean>(false);
   const { playHover } = useAudio();
 
   useEffect(() => {
@@ -12,11 +17,11 @@ const SettingsMain = ({ onViewChange }) => {
     }, 300);
   }, []);
 
-  const handleBackClick = () => {
+  const handleBackClick = (): void => {
     onViewChange('menu', 'fade');
   };
 
-  const handleLicensesClick = () => {
+  const handleLicensesClick = (): void => {
     onViewChange('licenses-temp', 'fade');
   };
 

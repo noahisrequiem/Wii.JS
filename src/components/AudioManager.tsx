@@ -1,12 +1,18 @@
 import React, { useEffect, useRef } from 'react';
+import { ViewType } from '../types';
 
-const AudioManager = ({ currentView, previousView }) => {
-  const startupRef = useRef(null);
-  const bgMusicRef = useRef(null);
-  const hoverRef = useRef(null);
-  const selectRef = useRef(null);
-  const zipRef = useRef(null);
-  const backRef = useRef(null);
+interface AudioManagerProps {
+  currentView: ViewType;
+  previousView: ViewType;
+}
+
+const AudioManager: React.FC<AudioManagerProps> = ({ currentView, previousView }) => {
+  const startupRef = useRef<HTMLAudioElement>(null);
+  const bgMusicRef = useRef<HTMLAudioElement>(null);
+  const hoverRef = useRef<HTMLAudioElement>(null);
+  const selectRef = useRef<HTMLAudioElement>(null);
+  const zipRef = useRef<HTMLAudioElement>(null);
+  const backRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     // Play startup sound and background music when entering menu for the first time
@@ -32,8 +38,10 @@ const AudioManager = ({ currentView, previousView }) => {
     }
   }, [currentView, previousView]);
 
+  const containerStyle: React.CSSProperties = { display: 'none' };
+
   return (
-    <div className="sfx" style={{ display: 'none' }}>
+    <div className="sfx" style={containerStyle}>
       <audio ref={startupRef} id="startup" src="assets/audio/startup.mp3" />
       <audio ref={bgMusicRef} id="bg-music" src="assets/audio/bg-music.mp3" loop />
       <audio ref={hoverRef} id="hover" src="assets/audio/button-hover.mp3" />

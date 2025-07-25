@@ -1,25 +1,45 @@
 import React from 'react';
+import { ViewType, TransitionType } from '../types';
 
-const LicensesTemp = ({ onViewChange }) => {
-  const handleBackClick = () => {
+interface LicensesTempProps {
+  onViewChange: (view: ViewType, transition?: TransitionType) => void;
+}
+
+const LicensesTemp: React.FC<LicensesTempProps> = ({ onViewChange }) => {
+  const handleBackClick = (): void => {
     onViewChange('settings-main', 'fade');
   };
 
+  const buttonStyle: React.CSSProperties = { 
+    position: 'fixed', 
+    top: '20px', 
+    right: '20px', 
+    padding: '10px 20px',
+    background: '#007bff',
+    color: 'white',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer'
+  };
+
+  const preStyle: React.CSSProperties = { 
+    whiteSpace: 'pre-wrap', 
+    fontSize: '12px' 
+  };
+
+  const containerStyle: React.CSSProperties = { 
+    color: 'black', 
+    background: 'white', 
+    padding: '20px', 
+    height: '100vh', 
+    overflow: 'auto' 
+  };
+
   return (
-    <div style={{ color: 'black', background: 'white', padding: '20px', height: '100vh', overflow: 'auto' }}>
+    <div style={containerStyle}>
       <button 
         onClick={handleBackClick}
-        style={{ 
-          position: 'fixed', 
-          top: '20px', 
-          right: '20px', 
-          padding: '10px 20px',
-          background: '#007bff',
-          color: 'white',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer'
-        }}
+        style={buttonStyle}
       >
         Back
       </button>
@@ -31,7 +51,7 @@ const LicensesTemp = ({ onViewChange }) => {
             waitForImages
           </a>
           <br /><br />
-          <pre style={{ whiteSpace: 'pre-wrap', fontSize: '12px' }}>
+          <pre style={preStyle}>
 {`Copyright (c) 2014 Alex Dickson
 
 Permission is hereby granted, free of charge, to any person

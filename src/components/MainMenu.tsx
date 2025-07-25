@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import ChannelGrid from './ChannelGrid';
 import BottomSection from './BottomSection';
+import { ViewType, TransitionType, SplashData } from '../types';
 import '../styles/menu.css';
 
-const MainMenu = ({ onChannelClick, onViewChange }) => {
-  const [isChannelSplash, setIsChannelSplash] = useState(false);
-  const [currentDate, setCurrentDate] = useState('');
+interface MainMenuProps {
+  onChannelClick: (channelData: SplashData) => void;
+  onViewChange: (view: ViewType, transition?: TransitionType) => void;
+}
+
+const MainMenu: React.FC<MainMenuProps> = ({ onChannelClick, onViewChange }) => {
+  const [isChannelSplash, setIsChannelSplash] = useState<boolean>(false);
+  const [currentDate, setCurrentDate] = useState<string>('');
 
   useEffect(() => {
     // Set current date
@@ -18,9 +24,10 @@ const MainMenu = ({ onChannelClick, onViewChange }) => {
     setCurrentDate(date);
   }, []);
 
-  const handleChannelClick = (channelData, event) => {
-    const centerX = event.currentTarget.offsetLeft + event.currentTarget.offsetWidth / 2;
-    const centerY = event.currentTarget.offsetTop + event.currentTarget.offsetHeight / 2;
+  const handleChannelClick = (channelData: SplashData, event: React.MouseEvent<HTMLDivElement>): void => {
+    const target = event.currentTarget;
+    const centerX = target.offsetLeft + target.offsetWidth / 2;
+    const centerY = target.offsetTop + target.offsetHeight / 2;
     
     setIsChannelSplash(true);
     

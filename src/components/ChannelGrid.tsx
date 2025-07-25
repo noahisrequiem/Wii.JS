@@ -1,9 +1,14 @@
 import React from 'react';
 import ChannelIcon from './ChannelIcon';
+import { Channel, SplashData } from '../types';
 
-const ChannelGrid = ({ onChannelClick }) => {
+interface ChannelGridProps {
+  onChannelClick: (channelData: SplashData, event: React.MouseEvent<HTMLDivElement>) => void;
+}
+
+const ChannelGrid: React.FC<ChannelGridProps> = ({ onChannelClick }) => {
   // Sample channel data - in a real app this would come from props or state
-  const channels = [
+  const channels: Channel[] = [
     { id: 1, image: 'assets/images/miichannel.jpg', occupied: true },
     { id: 2, image: 'assets/images/miichannel.jpg', occupied: true },
     { id: 3, occupied: false },
@@ -18,7 +23,7 @@ const ChannelGrid = ({ onChannelClick }) => {
     { id: 12, occupied: false },
   ];
 
-  const renderColumn = (startIndex, isFirst = false) => (
+  const renderColumn = (startIndex: number, isFirst: boolean = false): JSX.Element => (
     <div className={`col ${isFirst ? 'first' : ''}`}>
       {channels.slice(startIndex, startIndex + 3).map((channel) => (
         <ChannelIcon
