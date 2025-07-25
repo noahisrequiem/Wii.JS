@@ -1,0 +1,69 @@
+/* universal styling */
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: block;
+}
+
+body, html {
+  margin: 0;
+  overflow: hidden;
+  background-color: black;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body {
+  transition: 900ms;
+  cursor: url(../assets/images/cursor.png), auto;
+}
+
+.black {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999999;
+  top: 100vh;
+  opacity: 0;
+  transition: opacity 300ms;
+  position: absolute;
+}
+
+.black.animate {
+  opacity: 1;
+  top: 0;
+}
+
+/* Screen message */
+.screen-message {
+  display: none;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-family: sans-serif;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  z-index: 1000000;
+}
+
+.screen-message p {
+  margin-top: 40px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+}
+
+@media only screen and (max-height: 469px), screen and (max-width: 1220px), screen and (width: 1280px) and (height: 1024px) {
+  .screen-message {
+    display: block !important;
+  }
+}

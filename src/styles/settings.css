@@ -2,14 +2,14 @@
 
 .settings {
   background-color: black;
-  background-image: url(../images/settings-main-bg.png);
+  background-image: url(../assets/images/settings-main-bg.png);
   width: 100vw;
   height: 100vh;
 }
 
 .settings-header {
   background-color: black;
-  background: url(../images/settings-topbar.png);
+  background: url(../assets/images/settings-topbar.png);
   height: 16vh;
   width: 100vw;
   background-size: 15px 100%;
@@ -26,7 +26,7 @@
 
 .settings-main .settings-header:after {
   position: absolute;
-  background-image: url(../images/logo-white.svg);
+  background-image: url(../assets/images/logo-white.svg);
   width: 10vh;
   height: 4.5vh;
   content: '';
@@ -38,7 +38,7 @@
 
 .settings-footer {
   background-color: black;
-  background: url(../images/settings-bottombar.png);
+  background: url(../assets/images/settings-bottombar.png);
   height: 21vh;
   width: 100vw;
   background-size: 8px 100%;
@@ -55,13 +55,12 @@
 
 .settings-navcontainer {
   position: absolute;
-  /*top: 20%;*/
   top: -100vh;
   opacity: 0;
   margin-left: auto;
   margin-right: auto;
   left: calc(50% - 60vh);
-  transition: top 300ms;
+  transition: top 300ms, opacity 300ms;
 }
 
 .settings-navcontainer.animate {
@@ -79,19 +78,27 @@
 .settings-navbtn {
   width: 50vh;
   height: 38vh;
-  background-image: url(../images/settings-main-nav.png);
+  background-image: url(../assets/images/settings-main-nav.png);
   background-color: initial;
   background-size: 100% 100%;
   display: inline-block;
   position: relative;
   transition: 300ms;
+  cursor: url(../assets/images/cursor.png), auto;
+  border: none;
 }
 
 .settings-navbtn:hover {
   transform: scale(1.1);
 }
 
-.settings-navbtn.left { margin-right: 10vh; } .settings-navbtn.right { margin-left: 10vh; }
+.settings-navbtn.left { 
+  margin-right: 10vh; 
+} 
+
+.settings-navbtn.right { 
+  margin-left: 10vh; 
+}
 
 .settings-navbtn span.label {
   position: absolute;
@@ -109,7 +116,7 @@
 }
 
 .settings-navbtn.settings .icon {
-  background-image: url(../images/settings-icon.png);
+  background-image: url(../assets/images/settings-icon.png);
   width: 20vh;
   height: 20vh;
   background-size: 100% 100%;
@@ -119,7 +126,7 @@
 }
 
 .settings-navbtn.info .icon {
-  background-image: url(../images/info-icon.png);
+  background-image: url(../assets/images/info-icon.png);
   width: 20vh;
   height: 20vh;
   background-size: 100% 100%;
@@ -130,7 +137,7 @@
 
 .settings-footer .back {
   position: absolute;
-  background-image: url(../images/settings-back.png);
+  background-image: url(../assets/images/settings-back.png);
   width: 30vh;
   height: 8vh;
   content: '';
@@ -139,6 +146,9 @@
   left: 12vw;
   display: block;
   transition: 150ms;
+  cursor: url(../assets/images/cursor.png), auto;
+  border: none;
+  background-color: transparent;
 }
 
 .settings-footer .back:hover {
